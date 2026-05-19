@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar class="huella-toolbar">
+    <ion-buttons slot="start">
+      <ion-button (click)="botonVolver()" class="back-btn">
+        <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Carbon Footprint</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="huella-content">
+
+  <!-- HERO -->
+  <section class="h-hero">
+    <span class="h-pill">Calculator</span>
+    <h1 class="h-title">Your Recent Activity<br><em>Today</em></h1>
+    <p class="h-sub">Register your activity and see your total impact.</p>
+  </section>
+
+  <!-- ACCIONES -->
+  <section class="h-section">
+    <p class="h-label">
+      <ion-icon name="add-circle-outline"></ion-icon>
+      Register your Activity
+    </p>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <article class="action-tile tile-neg" (click)="lavarAuto()">
+            <span class="tile-icon icon-neg">
+              <ion-icon name="car-sport-outline"></ion-icon>
+            </span>
+            <span class="tile-name">I Washed the Car</span>
+            <span class="tile-badge badge-neg">+CO₂</span>
+          </article>
+        </ion-col>
+        <ion-col size="6">
+          <article class="action-tile tile-pos" (click)="reciclar()">
+            <span class="tile-icon icon-pos">
+              <ion-icon name="refresh-circle-outline"></ion-icon>
+            </span>
+            <span class="tile-name">I Recycled Things from the Garbage</span>
+            <span class="tile-badge badge-pos">−CO₂</span>
+          </article>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+
+  <!-- RESULTADO -->
+  <section class="h-section h-result-section">
+    <article class="result-card">
+      <header class="result-header">
+        <ion-icon name="analytics-outline" class="result-hicon"></ion-icon>
+        <span>Your Results</span>
+      </header>
+      <main class="result-body">
+        <p class="result-lbl">In Total:</p>
+        <p class="result-num">{{ huellaService.obtenerTotalImpacto() }}</p>
+        <span class="result-status" [class.status-ok]="huellaService.obtenerEstado() === 'Bueno'">
+          <ion-icon name="ellipse" class="status-dot"></ion-icon>
+          {{ huellaService.obtenerEstado() }}
+        </span>
+      </main>
+    </article>
+  </section>
+
+</ion-content>

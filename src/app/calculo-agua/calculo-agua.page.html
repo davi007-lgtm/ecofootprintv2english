@@ -1,0 +1,159 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-button fill="clear" color="light" (click)="botonVolver()">
+        <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      Water Consumption
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="water-page">
+
+  <!-- HERO -->
+  <section class="water-hero">
+
+    <span class="water-pill">
+      Consumption Tracker
+    </span>
+
+    <h1 class="water-title">
+      Water Usage <br>
+      <em>Today</em>
+    </h1>
+
+    <p class="water-sub">
+      Register your activity and monitor your daily water consumption.
+    </p>
+
+  </section>
+
+  <!-- METER -->
+  <section class="water-meter-section">
+
+    <section class="water-meter-box">
+
+      <section class="water-meter-circle">
+
+        <svg viewBox="0 0 120 120">
+
+          <circle
+            cx="60"
+            cy="60"
+            r="50"
+            class="water-meter-bg"
+          />
+
+          <circle
+            cx="60"
+            cy="60"
+            r="50"
+            class="water-meter-progress"
+            [style.strokeDashoffset]="strokeOffset"
+          />
+
+        </svg>
+
+        <section class="water-meter-info">
+          <h2>{{ consumoActual }}L</h2>
+          <p>Consumed</p>
+        </section>
+
+      </section>
+
+      <section class="water-meter-details">
+
+        <section class="water-info-card">
+          <ion-icon name="water-outline"></ion-icon>
+          <span>Goal</span>
+          <strong>{{ metaConsumo }}L</strong>
+        </section>
+
+        <section class="water-info-card">
+          <ion-icon name="flame-outline"></ion-icon>
+          <span>Status</span>
+          <strong>{{ porcentaje }}%</strong>
+        </section>
+
+      </section>
+
+    </section>
+
+  </section>
+
+  <!-- STATS -->
+  <section class="water-stats-section">
+
+    <h3 class="water-label">
+      <ion-icon name="analytics-outline"></ion-icon>
+      Daily Statistics
+    </h3>
+
+    <section class="water-stat-row">
+
+      <article class="water-stat-card water-good">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <span>Saved</span>
+        <strong>12L</strong>
+      </article>
+
+      <article class="water-stat-card water-bad">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        <span>Wasted</span>
+        <strong>5L</strong>
+      </article>
+
+      <article class="water-stat-card water-neutral">
+        <ion-icon name="speedometer-outline"></ion-icon>
+        <span>Average</span>
+        <strong>80L</strong>
+      </article>
+
+    </section>
+
+  </section>
+
+  <!-- FEATURE -->
+  <section class="water-card-section">
+
+    <article class="water-feature-card">
+
+      <header class="water-card-top">
+
+        <section class="water-card-icon">
+          <ion-icon name="water"></ion-icon>
+        </section>
+
+        <span class="water-card-tag">
+          Monitor
+        </span>
+
+      </header>
+
+      <h2 class="water-card-title">
+        Track Water Usage
+      </h2>
+
+      <p class="water-card-desc">
+        Keep track of your daily water usage and reduce unnecessary waste.
+      </p>
+
+      <ion-button
+        expand="block"
+        class="water-button"
+        (click)="actualizarMedidor()"
+      >
+        Add Consumption
+      </ion-button>
+
+    </article>
+
+  </section>
+
+</ion-content>

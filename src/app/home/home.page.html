@@ -1,0 +1,105 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="leaf-outline" class="logo-icon"></ion-icon>
+      EcoFootprint
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="home-content">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="pill">Your Impact, Your Responsability</span>
+    <h1 class="hero-title">Save the<br><em>Planet</em></h1>
+    <p class="hero-sub">
+      Mobile ecological tools for measuring your carbon footprint, water consumption and your air quality.
+    </p>
+  </section>
+
+  <!-- STATS -->
+  <section class="section">
+    <p class="section-label">
+      <ion-icon name="analytics-outline"></ion-icon>
+      Your Activity
+    </p>
+
+    <ion-grid class="stat-grid">
+      <ion-row>
+        <ion-col>
+          <article class="stat-chip" [class.chip-good]="impactoPositivo" [class.chip-bad]="!impactoPositivo">
+            <ion-icon [name]="impactoPositivo ? 'trending-down-outline' : 'trending-up-outline'" class="chip-icon"></ion-icon>
+            <span class="chip-label">Total Impact</span>
+            <span class="chip-value" *ngIf="tieneActividad">{{ totalImpacto }} kg CO₂</span>
+            <span class="chip-value chip-empty" *ngIf="!tieneActividad">No Available Registry</span>
+          </article>
+        </ion-col>
+        <ion-col>
+          <article class="stat-chip chip-neutral">
+            <ion-icon name="checkmark-circle-outline" class="chip-icon"></ion-icon>
+            <span class="chip-label">Today's Status</span>
+            <span class="chip-value" *ngIf="tieneActividad">{{ estadoHuella }}</span>
+            <span class="chip-value chip-empty" *ngIf="!tieneActividad">No data.</span>
+          </article>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <p class="hint" *ngIf="!tieneActividad">
+      <ion-icon name="information-circle-outline"></ion-icon>
+      Register your first activity in the calculator
+    </p>
+  </section>
+
+  <!-- CARDS -->
+  <section class="cards-section">
+
+    <article class="fcard fcard-green">
+      <header class="fcard-head">
+        <span class="fcard-icon">
+          <ion-icon name="leaf"></ion-icon>
+        </span>
+        <span class="fcard-tag">CO₂</span>
+      </header>
+      <p class="fcard-title">Carbon Footprint</p>
+      <p class="fcard-desc">Calculate your daily emissions and learn how to measure your overall emissions.</p>
+      <ion-button expand="block" class="fcard-btn" (click)="funcionalidadHuella()">
+        Calculate your Carbon Footprint
+        <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+      </ion-button>
+    </article>
+
+    <article class="fcard fcard-blue">
+      <header class="fcard-head">
+        <span class="fcard-icon fcard-icon-blue">
+          <ion-icon name="cloud-outline"></ion-icon>
+        </span>
+        <span class="fcard-tag fcard-tag-blue">AQI</span>
+      </header>
+      <p class="fcard-title">Air Quality</p>
+      <p class="fcard-desc">Consult your area's Air Quality Index alongside its environmental conditions.</p>
+      <ion-button expand="block" class="fcard-btn fcard-btn-blue" (click)="funcionalidadWAQI()">
+        See your area's AQI here
+        <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+      </ion-button>
+    </article>
+
+    <article class="fcard fcard-red">
+      <header class="fcard-head">
+        <span class="fcard-icon fcard-icon-red">
+          <ion-icon name="water-outline" class="waterdrop"></ion-icon>
+        </span>
+        <span class="fcard-tag fcard-tag-blue">AQI</span>
+      </header>
+      <p class="fcard-title">Water Consumption</p>
+      <p class="fcard-desc">Consult your Air Quality Index here.</p>
+      <ion-button expand="block" class="fcard-btn fcard-btn-red" (click)="funcionalidadAgua()">
+        See your water consumption here
+        <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+      </ion-button>
+    </article>
+
+  </section>
+
+</ion-content>

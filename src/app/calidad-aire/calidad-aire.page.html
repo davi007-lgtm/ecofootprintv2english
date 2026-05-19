@@ -1,0 +1,103 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="air-toolbar">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" color="light" (click)="botonVolver()">
+        <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Air Quality Index</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="air-content">
+
+  <!-- HERO -->
+  <section class="air-hero">
+    <span class="air-pill">
+      <ion-icon name="cloud-outline"></ion-icon>
+      Real-Time Monitoring
+    </span>
+    <h1 class="air-title">Quality<br><em>Index</em></h1>
+  </section>
+
+  <!-- SELECTOR -->
+  <section class="a-section">
+    <p class="a-label">
+      <ion-icon name="globe-outline"></ion-icon>
+      Pick a Country
+    </p>
+    <ion-item class="a-select-item" lines="none">
+      <ion-select
+        [(ngModel)]="ciudadSeleccionada"
+        placeholder="Pick a Country"
+        interface="action-sheet"
+        (ionChange)="cargarDatos()"
+        class="a-select">
+        <ion-select-option *ngFor="let pais of paises" [value]="pais.ciudad">
+          {{ pais.nombre }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </section>
+
+  <!-- LOADING -->
+  <section *ngIf="!datos" class="a-loading">
+    <ion-spinner name="crescent" class="a-spinner"></ion-spinner>
+    <p class="a-loading-text">Loading AQI Data...</p>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section *ngIf="datos" class="a-results">
+
+    <!-- AQI Card -->
+    <article class="aqi-card">
+      <header class="aqi-card-top">
+        <span class="aqi-icon-box">
+          <ion-icon name="analytics-outline"></ion-icon>
+        </span>
+        <span class="aqi-city">{{ datos.data.city.name | uppercase }}</span>
+      </header>
+      <p class="aqi-lbl">Air Quality Index Results:</p>
+      <p class="aqi-num" [style.color]="color">{{ datos.data.aqi }}</p>
+      <span class="aqi-pill" [style.background]="color">
+        <ion-icon name="leaf-outline"></ion-icon>
+        {{ estado }}
+      </span>
+    </article>
+
+    <!-- Condiciones -->
+    <article class="cond-card">
+      <p class="cond-title">
+        <ion-icon name="partly-sunny-outline"></ion-icon>
+        Actual Conditions
+      </p>
+      <ion-grid class="cond-grid">
+        <ion-row>
+          <ion-col class="cond-col">
+            <span class="cond-icon ci-temp"><ion-icon name="thermometer-outline"></ion-icon></span>
+            <span class="cond-lbl">Temperature</span>
+            <span class="cond-val">{{ datos.data.iaqi.t?.v }}°C</span>
+          </ion-col>
+          <ion-col class="cond-col">
+            <span class="cond-icon ci-hum"><ion-icon name="water-outline"></ion-icon></span>
+            <span class="cond-lbl">Humidity</span>
+            <span class="cond-val">{{ datos.data.iaqi.h?.v }}%</span>
+          </ion-col>
+          <ion-col class="cond-col">
+            <span class="cond-icon ci-pm"><ion-icon name="speedometer-outline"></ion-icon></span>
+            <span class="cond-lbl">PM2.5</span>
+            <span class="cond-val">{{ datos.data.iaqi.pm25?.v }}</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </article>
+
+    <!-- Ubicación -->
+    <footer class="loc-row">
+      <ion-icon name="location-outline" class="loc-icon"></ion-icon>
+      <span class="loc-text">{{ datos.data.city.name }}</span>
+    </footer>
+
+  </section>
+
+</ion-content>
