@@ -29,7 +29,8 @@
       <ion-row>
         <ion-col>
           <article class="stat-chip" [class.chip-good]="impactoPositivo" [class.chip-bad]="!impactoPositivo">
-            <ion-icon [name]="impactoPositivo ? 'trending-down-outline' : 'trending-up-outline'" class="chip-icon"></ion-icon>
+            <ion-icon [name]="impactoPositivo ? 'trending-down-outline' : 'trending-up-outline'"
+              class="chip-icon"></ion-icon>
             <span class="chip-label">Total Impact</span>
             <span class="chip-value" *ngIf="tieneActividad">{{ totalImpacto }} kg CO₂</span>
             <span class="chip-value chip-empty" *ngIf="!tieneActividad">No Available Registry</span>
@@ -85,21 +86,20 @@
       </ion-button>
     </article>
 
-    <article class="fcard fcard-red">
+    <article class="fcard fcard-water">
       <header class="fcard-head">
-        <span class="fcard-icon fcard-icon-red">
-          <ion-icon name="water-outline" class="waterdrop"></ion-icon>
+        <span class="fcard-icon fcard-icon-water">
+          <ion-icon name="water-outline"></ion-icon>
         </span>
-        <span class="fcard-tag fcard-tag-blue">AQI</span>
+        <span class="fcard-tag fcard-tag-water">H₂O</span>
       </header>
       <p class="fcard-title">Water Consumption</p>
-      <p class="fcard-desc">Consult your Air Quality Index here.</p>
-      <ion-button expand="block" class="fcard-btn fcard-btn-red" (click)="funcionalidadAgua()">
+      <p class="fcard-desc">Track your daily water usage and reduce unnecessary waste.</p>
+      <ion-button expand="block" class="fcard-btn fcard-btn-water" (click)="funcionalidadAgua()">
         See your water consumption here
         <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
       </ion-button>
     </article>
-
   </section>
 
 </ion-content>
